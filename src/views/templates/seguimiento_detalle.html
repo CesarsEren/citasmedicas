@@ -1,0 +1,284 @@
+<style>
+    fieldset {
+        border: 2px solid#ddd !important;
+        padding: 0 1.4em 1.4em 1.4em !important;
+        margin: 0 0 1.5em 0 !important;
+        -webkit-box-shadow: 0px 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px 0px #000;
+    }
+
+    legend {
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+    }
+
+    /*
+    input {
+        margin: 5px;
+    }*/
+</style>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12 col-md-6">
+                    <a href="javascript:void(0);" class="m-0 h3 text-dark" onclick="abrirVista('/seguimiento')">
+                        <i class="fas fa-2x fa-arrow-circle-left"></i></a>
+                </div><!-- /.col -->
+                <!--div class="col-sm-12 col-md-6">
+                    <ol class="breadcrumb float-right">
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                            <span class="mr-1">Nuevo</span>
+                            <i class="fa fa-plus"></i>
+                        </button>
+                 
+                    </ol>
+                </div-->
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="mt-2 col-md-8 col-sm-12">
+                        <div class="input-group input-group-md">
+                            <h3>71807093 - Cesar's Jose Manuel Pinedo Olivera</h3>
+                        </div>
+                    </div>
+                    <div class="mt-2 col-md-4 col-sm-12">
+                        <div class="row float-right">
+                            <div class="form-group">
+                                <button class="form-control btn btn-success">Hoy</button>
+                            </div>
+                            <div class="ml-2 form-group">
+                                <select class="form-control" type="date" name="" id="">
+                                    <option>10/10/2020</option>
+                                    <option>10/10/2020</option>
+                                    <option>10/10/2020</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--div class="col-md-4"></div>
+                    <div class=" mt-2 col-md-4 col-sm-12">
+                        <select class="custom-select" id="estado">
+                            <option>seleccione estado (Todos)</option>
+                            <option>Estable</option>
+                            <option>En Riesgo</option>
+                            <option>Alarmante</option>
+                        </select>
+                    </div-->
+                </div>
+                <!--div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                        title="Remove">
+                        <i class="fas fa-times"></i></button>
+                </div-->
+            </div>
+            <div class="card-body">
+                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6"></div>
+                        <div class="col-sm-12 col-md-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- LINE CHART -->
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Temperatura</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                                class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart">
+                                        <canvas class="lineChart"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Pulsaciones por Minuto</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                                class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart">
+                                        <canvas class="lineChart"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Nivel de Oxigenación</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                                class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart">
+                                        <canvas class="lineChart"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="example2" class="table table-bordered table-hover dataTable dtr-inline"
+                                role="grid" aria-describedby="example2_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting ">DNI</th>
+                                        <th class="sorting">Nombre
+                                        </th>
+                                        <th class="sorting">
+                                            Teléfono</th>
+                                        <th class="sorting">
+                                            Dirección</th>
+                                        <th class="sorting">Estado
+                                        </th>
+                                        <th class="sorting">Opciones
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr role="row" class="odd">
+                                        <td tabindex="0" class="sorting_1">Gecko</td>
+                                        <td>Firefox 1.0</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td>1.7</td>
+                                        <td>A</td>
+                                        <td class="text-center">
+                                            <button class="mt-2 text-center btn btn-danger" data-toggle="tooltip"
+                                                data-placement="bottom" title="Ver Estadisticas">
+                                                <i class="text-white fa fa-chart-bar"></i>
+                                            </button>
+                                            <button class="mt-2 text-center btn btn-danger" data-toggle="tooltip"
+                                                data-placement="bottom" title="Dejar de Seguir">
+                                                <i class="text-white fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</div>
+
+<script>
+    $(function () {
+        var areaChartData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+                    label: 'Digital Goods',
+                    backgroundColor: 'rgba(60,141,188,0.9)',
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    pointRadius: false,
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(60,141,188,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: [28, 48, 40, 19, 86, 27, 90]
+                },
+                {
+                    label: 'Electronics',
+                    backgroundColor: 'rgba(210, 214, 222, 1)',
+                    borderColor: 'rgba(210, 214, 222, 1)',
+                    pointRadius: false,
+                    pointColor: 'rgba(210, 214, 222, 1)',
+                    pointStrokeColor: '#c1c7d1',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(220,220,220,1)',
+                    data: [65, 59, 80, 81, 56, 55, 40]
+                },
+            ]
+        }
+
+        var areaChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false,
+                    }
+                }]
+            }
+        }
+        //-------------
+        //- LINE CHART -
+        //--------------
+        for (var x = 0; x < 3; x++) {
+            var lineChartCanvas = $('.lineChart').get(x).getContext('2d')
+            var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
+            var lineChartData = jQuery.extend(true, {}, areaChartData)
+            lineChartData.datasets[0].fill = false;
+            lineChartData.datasets[1].fill = false;
+            lineChartOptions.datasetFill = false
+
+            var lineChart = new Chart(lineChartCanvas, {
+                type: 'line',
+                data: lineChartData,
+                options: lineChartOptions
+            })
+        }
+
+
+
+    });
+</script>

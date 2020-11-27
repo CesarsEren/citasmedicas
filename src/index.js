@@ -15,9 +15,9 @@ app.use(express.urlencoded({extended:true}));//equals to BodyParser
     saveUninitialized: true, 
   }))*/
 // Routes Server
-//app.use(require('./routes/products'))
-//app.use(require('./routes/usuarios'))
-//app.use(require('./routes/pizarra'))
+app.use(require('./routes/equipos'))
+app.use(require('./routes/paciente'))
+app.use(require('./routes/seguimiento'))
 // Routes Views
 app.use(require('./views/views'))
 app.use(express.static(path.join(__dirname,'public')));
