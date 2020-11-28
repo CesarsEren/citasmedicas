@@ -20,6 +20,7 @@ router.post("/paciente.consulta", (req, res) => {
       var mensaje = "Usuario Registrado";
     }
   );*/
+
 });
 
 //Exports

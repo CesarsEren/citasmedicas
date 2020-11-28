@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-/*
+
 const mysqlconecct = mysql.createConnection({
   host: "localhost",
   database: "seguimientocovid",
@@ -7,14 +7,15 @@ const mysqlconecct = mysql.createConnection({
   password: "",
   port: 3306,
 });
-*/
+
+/*
 const mysqlconecct = mysql.createConnection({
   host: "cesarsdb.cvgsgdqliqq7.us-east-1.rds.amazonaws.com",
   database: "seguimientocovid",
   user: "admin",
   password: "cesars123",
   port: 3306,
-});
+});*/
 
 /*
 define('DB_SERVER', "cesarsdb.cvgsgdqliqq7.us-east-1.rds.amazonaws.com");

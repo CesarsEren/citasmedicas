@@ -189,75 +189,93 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-xl-6 col-md-6">
-                        <fieldset>
-                            <legend>Datos de Paciente</legend>
-                            <div class="form-group">
-                                <!--label for="dni">Documento Nacional de Identidad</label-->
-                                <input type="text" name="dni" class="form-control" placeholder="Ingrese dni" autofocus>
-                            </div>
-                            <div class="form-group">
-                                <!--label for="nombre">Dirección</label-->
-                                <input type="text" name="nombre" class="form-control" placeholder="Ingrese nombre" />
-                            </div>
-                            <div class="form-group">
-                                <!--label for="paterno">Apellido Paterno</label-->
-                                <input type="text" name="paterno" class="form-control"
-                                    placeholder="Ingrese apellido Paterno" />
-                            </div>
-                            <div class="form-group">
-                                <!--label for="materno">Apellido Materno</label-->
-                                <input type="text" name="materno" class="form-control"
-                                    placeholder="Ingrese apellido Materno" />
-                            </div>
-                            <div class="form-group">
-                                <!--<label for="direccion">Dirección</label-->
-                                <input type="text" name="direccion" class="form-control"
-                                    placeholder="Ingrese dirección" />
-                            </div>
-                            <div class="form-group">
-                                <!--label for="whatsaap">Celular</label-->
-                                <input type="text" name="whatsaap" class="form-control"
-                                    placeholder="Ingrese número de celular" />
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="col-md-6">
-                        <fieldset>
-                            <legend>Datos del Seguimiento</legend>
+                <div>
+                    <form class="row" id="formpaciente">
+                        <div class="col-xl-6 col-md-6">
+                            <fieldset>
+                                <legend>Datos de Paciente</legend>
+                                <div class="form-group">
+                                    <!--label for="dni">Documento Nacional de Identidad</label-->
+                                    <input type="text" name="dni" class="form-control" placeholder="Ingrese dni"
+                                        autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <!--label for="nombre">Dirección</label-->
+                                    <input type="text" name="nombre" class="form-control"
+                                        placeholder="Ingrese nombre" />
+                                </div>
+                                <div class="form-group">
+                                    <!--label for="paterno">Apellido Paterno</label-->
+                                    <input type="text" name="paterno" class="form-control"
+                                        placeholder="Ingrese apellido Paterno" />
+                                </div>
+                                <div class="form-group">
+                                    <!--label for="materno">Apellido Materno</label-->
+                                    <input type="text" name="materno" class="form-control"
+                                        placeholder="Ingrese apellido Materno" />
+                                </div>
+                                <div class="form-group">
+                                    <!--<label for="direccion">Dirección</label-->
+                                    <input type="text" name="direccion" class="form-control"
+                                        placeholder="Ingrese dirección" />
+                                </div>
+                                <div class="form-group">
+                                    <!--label for="whatsaap">Celular</label-->
+                                    <input type="text" name="whatsaap" class="form-control"
+                                        placeholder="Ingrese número de celular" />
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                                <legend>Datos del Seguimiento</legend>
 
-                            <div class="form-group">
-                                <input type="date" name="nombre" class="form-control" placeholder="Fecha de Inicio"
-                                    autofocus>
-                            </div>
-                            <div class="form-group">
-                                <input type="date" name="nombre" class="form-control" placeholder="Fecha de Fin"
-                                    autofocus>
-                            </div>
-                            <div class="form-group">
-                                <select name="" class="form-control" id="">
-                                    <option value="">Seleccione código de Equipo</option>
-                                    <option value="X--SSSDASD-XAAAA-XSDASD-XXX">X--SSSDASD-XAAAA-XSDASD-XXX</option>
-                                    <option value="X--SSSDASD-XAAAA-XSDASD-XXX">X--SSSDASD-XAAAA-XSDASD-XXX</option>
-                                    <option value="X--SSSDASD-XAAAA-XSDASD-XXX">X--SSSDASD-XAAAA-XSDASD-XXX</option>
-                                </select>
-                                <!--input type="date" name="nombre" class="form-control" placeholder="Fecha de Fin"
+                                <div class="form-group">
+                                    <input type="date" name="fechainicio" class="form-control"
+                                        placeholder="Fecha de Inicio" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" name="fechafin" class="form-control" placeholder="Fecha de Fin"
+                                        autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <select name="" class="form-control" id="">
+                                        <option value="">Seleccione código de Equipo</option>
+                                        <option value="X--SSSDASD-XAAAA-XSDASD-XXX">X--SSSDASD-XAAAA-XSDASD-XXX</option>
+                                        <option value="X--SSSDASD-XAAAA-XSDASD-XXX">X--SSSDASD-XAAAA-XSDASD-XXX</option>
+                                        <option value="X--SSSDASD-XAAAA-XSDASD-XXX">X--SSSDASD-XAAAA-XSDASD-XXX</option>
+                                    </select>
+                                    <!--input type="date" name="nombre" class="form-control" placeholder="Fecha de Fin"
                                     autofocus-->
-                            </div>
-                        </fieldset>
-                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </form>
 
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Iniciar Seguimiento</button>
+                <button type="button" class="btn btn-primary" id="btn-registrar">Iniciar Seguimiento</button>
             </div>
         </div>
     </div>
 </div>
 <script>
     $(function () {
+        $("#btn-registrar").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "seguimiento.registro",
+                data: $("#formpaciente").serialize()
+                , success: function (res) {
+                    //console.log(res);
+                    alert(res);
+                    console.error(res);
+                    //$("#formpaciente").reset();
+                }
+            })
+
+        })
     })
 </script>
