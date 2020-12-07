@@ -213,11 +213,23 @@
         return false;
     }
 
-    function validaTexto(event) {
-        if (event.charCode <= 97 || event.charCode >= 122) {
-            return true;
+    function validaTexto(e) {
+        var key = e.keyCode || e.which,
+            tecla = String.fromCharCode(key).toLowerCase(),
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+            especiales = [8, 37, 39, 46],
+            tecla_especial = false;
+
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
         }
-        return false;
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+            return false;
+        }
     }
 
     var optionequipos = function (id, text) {
@@ -381,6 +393,7 @@
             $("#inputdni").val("");
             llenartablaseguimiento(1, null);
         })
+
         $("#btn-registrar").click(function () {
 
             $.ajax({
@@ -394,6 +407,7 @@
                         $("#formpaciente").trigger("reset");
                         llenarcombo();
                         $("#msgform").replaceWith(`<span id="msgform" class="text-center text-white btn btn-success btn-flat btn-xs">${res.msg}</span>`)
+                        llenartablaseguimiento(1, null);
                     }
                 }
             })
