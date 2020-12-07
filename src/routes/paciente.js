@@ -1,26 +1,52 @@
-/* cada Js actua como si fuera una clase y para poder ser 
-instanciada debe ser permitir su exportación con
- module.exports = router
- que comparte las rutas de los webservices a desarrollar */
-
 //Imports
 const express = require("express");
 const router = express.Router();
 const mysqlconecct = require("../database");
 
-router.post("/paciente.consulta", (req, res) => {
+router.get("/paciente.consulta", (req, res) => {
+  var respuesta = {
+    msg: "consulta realizada con éxito",
+    status: "SUCCESS",
+    data: [],
+  };
   console.log(req.body);
-  /*const { nombres, paterno, materno, correo, pass } = req.body; 
-  mysqlconecct.query("insert into Usuario(nombres,apepaterno,apematerno,correo,password) values(?,?,?,?,?)",
-    [nombres, paterno, materno, correo, pass],
+  const { dni } = req.query;
+  mysqlconecct.query(
+    "SELECT * FROM paciente WHERE paciente_dni = ?",
+    [dni],
     function (err, result) {
-      //respuesta.datos = result;
-      console.log("result", result);
-      console.log("err", err);
-      var mensaje = "Usuario Registrado";
+      if (result != null && err == null) {
+        respuesta.data = result[0];
+      } else {
+        respuesta.status = "VACIO";
+        respuesta.data = result[0];
+      }
+      res.send(respuesta);
     }
-  );*/
+  );
+});
 
+router.get("/paciente.lista", (req, res) => {
+  var respuesta = {
+    msg: "consulta realizada con éxito",
+    status: "SUCCESS",
+    data: [],
+  };
+  console.log(req.body);
+  const { dni } = req.query;
+
+  var query = `SELECT pc.*,(if((SELECT COUNT(1) FROM seguimiento WHERE seguimiento_paciente_id = pc.paciente_id AND seguimiento_estado=1 )=1,
+  'Con Seguimiento','Sin Seguimiento')) as seguimiento 
+  FROM paciente pc ${dni != null ? `where pc.paciente_dni = ${dni}` : ""}`;
+  mysqlconecct.query(query, [dni], function (err, result) {
+    if (result != null && err == null) {
+      respuesta.data = result;
+    } else {
+      respuesta.status = "VACIO";
+      respuesta.data = result;
+    }
+    res.send(respuesta);
+  });
 });
 
 //Exports

@@ -1,3 +1,21 @@
+<style>
+    .label-primary {
+        background-color: #337ab7
+    }
+
+    .label-default {
+        background-color: #c6ccd1
+    }
+
+    .label {
+        text-align: center;
+        color: white;
+        padding-left: 4px;
+        padding-right: 4px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -27,12 +45,13 @@
                 <div class="row">
                     <div class=" mt-2 col-md-4 col-sm-12">
                         <div class="input-group input-group-md">
-                            <input type="text" class="form-control " placeholder="Ingrese DNI">
+                            <input type="text" class="form-control " id="indni" placeholder="Ingrese DNI" maxlength="8"
+                                onkeyup="buscardni()">
                             <span class="input-group-append">
-                                <button type="button" class="btn btn-info btn-flat">
+                                <button type="button" class="btn btn-info btn-flat" onclick="buscardni()">
                                     <i class="fas fa-search"></i>
                                 </button>
-                                <button type="button" class="btn btn-light btn-flat">
+                                <button type="button" class="btn btn-light btn-flat" onclick="limpiar()">
                                     <i class="fas fa-times-circle"></i>
                                 </button>
                             </span>
@@ -54,91 +73,87 @@
                                 role="grid" aria-describedby="example2_info">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting ">Fecha</th>
-                                        <th class="sorting">Hora</th>
-                                        <th class="sorting">Oxigenación</th>
-                                        <th class="sorting">Temperatura</th>
-                                        <th class="sorting">Pulsaciones</th>
+                                        <th class="sorting ">DNI</th>
+                                        <th class="sorting">Nombre
+                                        </th>
+                                        <th class="sorting">
+                                            Teléfono</th>
+                                        <th class="sorting">
+                                            Dirección</th>
                                         <th class="sorting">Estado
                                         </th>
-                                        <!--th class="sorting">Opciones
-                                        </th-->
+                                        <th class="sorting">Historial
+                                        </th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
-                                        <td><span class="text-center text-white btn btn-warning btn-flat btn-xs">Seguimiento
-                                                Activo</span></td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
-                                        <td><span class="text-center text-white btn btn-success btn-flat btn-xs">Sin Seguimiento
-                                                </span></td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
-                                        <td><span class="text-center text-white btn btn-success btn-flat btn-xs">Sin Seguimiento
-                                                </span></td>
-                                    </tr>
-
+                                <tbody id="tablepacientes">
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <!--div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="dataTables_info float-md-left  text-sm-center" id="example2_info" role="status"
-                                aria-live="polite">Showing 1
-                                to 10 of 57 entries</div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="float-md-right  text-sm-center dataTables_paginate paging_simple_numbers"
-                                id="example2_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button page-item previous disabled" id="example2_previous">
-                                        <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0"
-                                            class="page-link">
-                                            <i class="fa fa-arrow-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="paginate_button page-item active"><a href="#" aria-controls="example2"
-                                            data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="example2"
-                                            data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="example2"
-                                            data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="example2"
-                                            data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
 
-                                    <li class="paginate_button page-item next" id="example2_next"><a href="#"
-                                            aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link"><i
-                                                class="fa fa-arrow-right"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div-->
                 </div>
             </div>
-            <!-- /.card-body -->
-            <!--div class="card-footer">
-                Footer
-            </div-->
-            <!-- /.card-footer-->
         </div>
-        <!-- /.card -->
-
     </section>
 </div>
+
+<script>
+    var buscardni = function () {
+        var dni = $("#indni").val();
+        if (dni.length == 8) {
+            llenartablapacientes(dni);
+        } else if (dni.length == 0) {
+            llenartablapacientes(null);
+        }
+    }
+
+    var limpiar = function () {
+        llenartablapacientes(null)
+    }
+
+    var rowtable = function (data) {
+        return `<tr role="row" class="odd">
+            <td>${data.paciente_dni}</td>
+            <td>${data.paciente_nombre} ${data.paciente_paterno} ${data.paciente_materno}</td>
+            <td>${data.paciente_celular}</td>
+            <td>${data.paciente_direccion}</td>
+            <td><span class="label label-${data.seguimiento.includes("Con") ? 'primary' : 'default'}">${data.seguimiento}</span>
+            </td>
+            <td>
+                <button class="btn-estadisticas mt-2 text-center btn btn-danger" title="Ver Estadisticas" onclick="abrirVista('/seguimiento.historial')">
+                                                <i class="text-white fa fa-chart-bar"></i>
+                                            </button>
+                </td>
+            
+            </tr>`;
+    }
+    var llenartablapacientes = function (dni) {
+        $.ajax({
+            type: "GET",
+            url: `paciente.lista${dni != null ? `?dni=${dni}` : ``}`,
+            success: function (res) {
+                console.log(res);
+                var html = "";
+                if (res.data.length != 0) {
+                    for (let valor of res.data) {
+                        html += rowtable(valor);
+                    }
+                } else {
+                    html += `<tr role="row" class="odd">
+                        <td colspan="7">
+                            <p class="text-center">NO EXISTEN PACIENTES REGISTRADOS</p>
+                            </td>
+                            </tr>`;
+                }
+                $("#tablepacientes").html(html);
+
+
+            }
+        })
+    }
+    $(function () {
+        llenartablapacientes(null);
+    });
+
+</script>
