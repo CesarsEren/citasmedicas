@@ -121,13 +121,31 @@
             <td><span class="label label-${data.seguimiento.includes("Con") ? 'primary' : 'default'}">${data.seguimiento}</span>
             </td>
             <td>
-                <button class="btn-estadisticas mt-2 text-center btn btn-danger" title="Ver Estadisticas" onclick="abrirVista('/seguimiento.historial')">
-                                                <i class="text-white fa fa-chart-bar"></i>
-                                            </button>
-                </td>
-            
+                <button class="btn-historial mt-2 text-center btn btn-danger" 
+                 
+                                            data-paciente_id="${data.paciente_id}"
+                                            data-dni="${data.paciente_dni}"
+                                            data-nombre="${data.paciente_nombre} , ${data.paciente_paterno} ${data.paciente_materno}"
+                                            data-celular="${data.paciente_celular}"
+                                            data-direccion="${data.paciente_direccion}""
+                
+                title="Ver Estadisticas">
+                    <i class="text-white fa fa-chart-bar"></i>
+                </button>
+                </td>            
             </tr>`;
+
     }
+
+
+
+    function openHistorial(paciente_id, dni, nombre) {
+        sessionStorage.paciente_id = paciente_id;
+        sessionStorage.dni = dni;
+        sessionStorage.nombre = nombre;
+        abrirVista('/seguimiento.historial')
+    }
+
     var llenartablapacientes = function (dni) {
         $.ajax({
             type: "GET",
@@ -138,6 +156,7 @@
                 if (res.data.length != 0) {
                     for (let valor of res.data) {
                         html += rowtable(valor);
+
                     }
                 } else {
                     html += `<tr role="row" class="odd">
@@ -147,13 +166,21 @@
                             </tr>`;
                 }
                 $("#tablepacientes").html(html);
-
+                $(".btn-historial").click(function () {
+                    sessionStorage.setItem('paciente_id', $(this).data("paciente_id"))
+                    sessionStorage.setItem('nombre', $(this).data("nombre"))
+                    sessionStorage.setItem('dni', $(this).data("dni"))
+                    sessionStorage.setItem('celular', $(this).data("celular"))
+                    sessionStorage.setItem('direccion', $(this).data("direccion"))
+                    $("#contenedor").load("seguimiento.historial");
+                })
 
             }
         })
     }
     $(function () {
         llenartablapacientes(null);
+
     });
 
 </script>

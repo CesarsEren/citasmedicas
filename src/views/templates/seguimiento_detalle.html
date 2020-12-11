@@ -1,4 +1,15 @@
 <style>
+    .loader {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url('../gifts/loader64.gif') 50% 50% no-repeat rgb(249, 249, 249);
+        opacity: .8;
+    }
+
     fieldset {
         border: 2px solid#ddd !important;
         padding: 0 1.4em 1.4em 1.4em !important;
@@ -19,6 +30,7 @@
     }*/
 </style>
 <div class="content-wrapper">
+    <div class="loader"></div>
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -44,14 +56,13 @@
                     </div>
                     <div class="mt-2 col-md-4 col-sm-12">
                         <div class="row float-right">
-                            <div class="form-group">
+                            <!--div class="form-group">
                                 <button class="form-control btn btn-success">Hoy</button>
-                            </div>
+                            </div-->
                             <div class="ml-2 form-group">
-                                <select class="form-control" type="date" name="" id="">
-                                    <option>10/10/2020</option>
-                                    <option>10/10/2020</option>
-                                    <option>10/10/2020</option>
+                                <select class="form-control" type="date" name="" id="cbofechas"
+                                    onchange="changefecha()">
+
                                 </select>
                             </div>
                         </div>
@@ -69,7 +80,7 @@
                             <!-- LINE CHART -->
                             <div class="card card-info">
                                 <div class="card-header">
-                                    <h3 class="card-title">Temperatura</h3>
+                                    <h3 class="card-title">Temperatura Corporal (TC)</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                                 class="fas fa-minus"></i>
@@ -82,30 +93,6 @@
                                     <div class="chart">
                                         <canvas class="lineChart"
                                             style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-12">
-
-                            <div class="card card-info">
-                                <div class="card-header">
-                                    <h3 class="card-title">Pulsaciones por Minuto</h3>
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                                class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                                class="fas fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart">
-                                        <canvas class="lineChart"
-                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +102,7 @@
 
                             <div class="card card-info">
                                 <div class="card-header">
-                                    <h3 class="card-title">Nivel de Oxigenación</h3>
+                                    <h3 class="card-title">Frecuencia Cardiaca (BPM)</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                                 class="fas fa-minus"></i>
@@ -134,6 +121,30 @@
                             </div>
 
                         </div>
+                        <div class="col-md-12">
+
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Saturación de Oxígeno (SpO2)</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                                class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart">
+                                        <canvas class="lineChart"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -144,46 +155,17 @@
                                     <tr role="row">
                                         <th class="sorting ">Fecha</th>
                                         <th class="sorting">Hora</th>
-                                        <th class="sorting">Oxigenación</th>
-                                        <th class="sorting">Temperatura</th>
-                                        <th class="sorting">Pulsaciones</th>
+                                        <th class="sorting">SpO2</th>
+                                        <th class="sorting">TC</th>
+                                        <th class="sorting">BPM</th>
                                         <th class="sorting">Estado
                                         </th>
                                         <!--th class="sorting">Opciones
                                         </th-->
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
-                                        <td><span
-                                                class="text-center text-white btn btn-warning btn-flat btn-xs">Seguimiento
-                                                Activo</span></td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
-                                        <td><span class="text-center text-white btn btn-success btn-flat btn-xs">Sin
-                                                Seguimiento
-                                            </span></td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
-                                        <td><span class="text-center text-white btn btn-success btn-flat btn-xs">Sin
-                                                Seguimiento
-                                            </span></td>
-                                    </tr>
+                                <tbody id="tabledata">
+
 
                                 </tbody>
                             </table>
@@ -198,43 +180,128 @@
 </div>
 
 <script>
-    $(function () {
+    var _informacion = [];
+    var labels = [];
+    var valuestemp = [];
+    var valuefrecuencia = [];
+    var valuesaturacion = [];
+    var datarow = {
+        "saturacion": 0,
+        "temperatura": 0,
+        "frecuencia": 0,
+        "fecha": 0,
+        "hora": 0,
+        "estado": "OK"
+    };
+    var rowtable = function (datarow) {
+        labels.push(datarow.hora);
+        valuestemp.push(datarow.temperatura);
+        valuesaturacion.push(datarow.saturacion);
+        valuefrecuencia.push(datarow.frecuencia);
+        return ` <tr role="row" class="odd">
+            <td>${datarow.fecha}</td>
+            <td>${datarow.hora}</td>
+            <td>${datarow.saturacion}</td>
+            <td>${datarow.temperatura}</td>
+            <td>${datarow.frecuencia}</td>
+            <td>${datarow.estado}</td> 
+            </tr>`;
+    }
 
-        $("#dni-nombre").text(sessionStorage.dni + " - " + sessionStorage.nombre)
-        var areaChartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    var llenartemperatura = function (dia) {
+        labels = [];
+        valuestemp = [];
+        valuefrecuencia = [];
+        valuesaturacion = [];
+        $("#tabledata").html("<strong>Buscando Información</strong>");
+        $.ajax({
+            type: "GET",
+            url: "ubidots.gettemperatura?equipo=" + sessionStorage.CODE_UNICO,
+            success: function (res) {
+                var data = res;
+                var html;
+                for (_item of data.reverse()) {
+                    datarow = _item;
+                    var fecha = new Date(_item.timestamp).toLocaleString().split(" ")[0];
+                    fecha = new Date(fecha).toLocaleDateString('en-GB');
+                    console.log(fecha);
+                    console.log(dia);
+                    console.log(fecha === dia);
+                    if (fecha == dia) {
+                        datarow.fecha = new Date(_item.timestamp).toLocaleString().split(" ")[0];
+                        datarow.hora = new Date(_item.timestamp).toLocaleString().split(" ")[1];
+                        html += rowtable(datarow);
+                    }
+                }
+                $("#tabledata").html(html);
+                armarChart();
+            }
+        })
+    };
+
+
+    var armarChart = function () {
+        var DataSaturacion, DataFrecuencia, DataTemperatura;
+        DataSaturacion = {
+            labels: labels,
             datasets: [
                 {
-                    label: 'Digital Goods',
+                    label: 'Saturación',
                     backgroundColor: 'rgba(60,141,188,0.9)',
                     borderColor: 'rgba(60,141,188,0.8)',
-                    pointRadius: false,
+                    pointRadius: true,
                     pointColor: '#3b8bba',
                     pointStrokeColor: 'rgba(60,141,188,1)',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data: [28, 48, 40, 19, 86, 27, 90]
-                },
-                {
-                    label: 'Electronics',
-                    backgroundColor: 'rgba(210, 214, 222, 1)',
-                    borderColor: 'rgba(210, 214, 222, 1)',
-                    pointRadius: false,
-                    pointColor: 'rgba(210, 214, 222, 1)',
-                    pointStrokeColor: '#c1c7d1',
-                    pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data: [65, 59, 80, 81, 56, 55, 40]
-                },
+                    data: []
+                }
             ]
         }
 
+
+        DataFrecuencia = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Frecuencia',
+                    backgroundColor: 'rgba(60,141,188,0.9)',
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    pointRadius: true,
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(60,141,188,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: []
+                }
+            ]
+        }
+
+        DataTemperatura = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Temperatura',
+                    backgroundColor: 'rgba(60,141,188,0.9)',
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    pointRadius: true,
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(60,141,188,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: []// [28, 48, 40, 19, 86, 27, 90]
+                }
+            ]
+        }
         var areaChartOptions = {
             maintainAspectRatio: false,
             responsive: true,
             legend: {
                 display: false
             },
+            pointRadius: 100, 
+            pointBorderWidth: 15,
+            /*pointBorderColor: rgba(0, 0, 0, 1),*/
             scales: {
                 xAxes: [{
                     gridLines: {
@@ -248,24 +315,95 @@
                 }]
             }
         }
-        //-------------
-        //- LINE CHART -
-        //--------------
-        for (var x = 0; x < 3; x++) {
-            var lineChartCanvas = $('.lineChart').get(x).getContext('2d')
-            var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
-            var lineChartData = jQuery.extend(true, {}, areaChartData)
-            lineChartData.datasets[0].fill = false;
-            lineChartData.datasets[1].fill = false;
-            lineChartOptions.datasetFill = false
+        cargarLineChart(areaChartOptions, DataTemperatura, DataFrecuencia, DataSaturacion);
 
-            var lineChart = new Chart(lineChartCanvas, {
-                type: 'line',
-                data: lineChartData,
-                options: lineChartOptions
-            })
+        DataSaturacion.datasets[0].data = valuesaturacion;
+        DataFrecuencia.datasets[0].data = valuefrecuencia;
+        DataTemperatura.datasets[0].data = valuestemp;
+
+        cargarLineChart(areaChartOptions, DataTemperatura, DataFrecuencia, DataSaturacion);
+    }
+
+    var cargarLineChart = function (areaChartOptions, DataTemperatura, DataFrecuencia, DataSaturacion) {
+        var lineChartCanvas = $('.lineChart').get(0).getContext('2d')
+        var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
+        var lineChartData = jQuery.extend(true, {}, DataTemperatura)
+        lineChartData.datasets[0].fill = false;
+        lineChartOptions.datasetFill = false
+
+        var lineChart = new Chart(lineChartCanvas, {
+            type: 'line',
+            data: lineChartData,
+            options: lineChartOptions
+        })
+
+
+        var lineChartCanvas = $('.lineChart').get(1).getContext('2d')
+        var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
+        var lineChartData = jQuery.extend(true, {}, DataFrecuencia)
+        lineChartData.datasets[0].fill = false;
+        lineChartOptions.datasetFill = false
+
+        var lineChart = new Chart(lineChartCanvas, {
+            type: 'line',
+            data: lineChartData,
+            options: lineChartOptions
+        })
+
+        var lineChartCanvas = $('.lineChart').get(2).getContext('2d')
+        var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
+        var lineChartData = jQuery.extend(true, {}, DataSaturacion)
+        lineChartData.datasets[0].fill = false;
+        lineChartOptions.datasetFill = false
+
+        var lineChart = new Chart(lineChartCanvas, {
+            type: 'line',
+            data: lineChartData,
+            options: lineChartOptions
+        })
+    }
+
+    Date.prototype.addDays = function (days) {
+        var date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+    }
+    function getDates(startDate, stopDate) {
+        var dateArray = [];
+        var currentDate = moment(startDate);
+        var stopDate = moment(stopDate);
+        while (currentDate <= stopDate) {
+            dateArray.push(moment(currentDate).format('YYYY-MM-DD'))
+            currentDate = moment(currentDate).add(1, 'days');
         }
+        return dateArray;
+    }
+    var llenarcombofechas = function (data) {
+        var html = "";
 
+        for (const [index, item] of data.entries()) {
+            var _item = new Date(item).toLocaleString();
+            html += `<option ${index == 0 ? 'selected' : ''} value="${new Date(_item).toLocaleDateString('en-GB')}">${new Date(_item).toLocaleDateString('en-US')}</option>`;
+        }
+        $("#cbofechas").html(html);
+    }
+    var changefecha = function () {
+        llenartemperatura($("#cbofechas option:selected").val())
+    }
+    $(function () {
+        llenarcombofechas(getDates(sessionStorage.fecha_inicio, sessionStorage.fecha_fin));
+        $.ajax({
+            type: "GET",
+            url: "ubidots.generartoken"
+            , beforeSend: function () {
+                $(".loader").fadeOut("slow");
+            }
+            , success: function (res) {
+                llenartemperatura($("#cbofechas option:selected").val());
+            }
+        })
+
+        $("#dni-nombre").text(sessionStorage.dni + " - " + sessionStorage.nombre)
 
 
     });

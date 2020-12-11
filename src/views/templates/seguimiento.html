@@ -61,7 +61,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="col-md-4"></div>
+                    <!--div class="col-md-4"></div>
                     <div class=" mt-2 col-md-4 col-sm-12">
                         <select class="custom-select" id="estado">
                             <option>seleccione estado (Todos)</option>
@@ -69,7 +69,7 @@
                             <option>En Riesgo</option>
                             <option>Alarmante</option>
                         </select>
-                    </div>
+                    </div-->
                 </div>
             </div>
             <div class="card-body">
@@ -91,8 +91,8 @@
                                             Teléfono</th>
                                         <th class="sorting">
                                             Dirección</th>
-                                        <th class="sorting">Estado
-                                        </th>
+                                        <!--th class="sorting">Estado
+                                        </th-->
                                         <th class="sorting">Fecha Fin
                                         </th>
                                         <th class="sorting">Opciones
@@ -243,12 +243,13 @@
                                         <td>${res.seguimiento_nombre} , ${res.seguimiento_paterno} ${res.seguimiento_materno}</td>
                                         <td>${res.seguimiento_celular}</td>
                                         <td>${res.seguimiento_direccion}</td>
-                                        <td>${res.seguimiento_dni}</td>
+                                        <!--td>${res.seguimiento_dni}</td-->
                                         <td>${res.seguimiento_fecha_fin.split("T")[0]}</td>
                                         <td class="text-center">
                                             <button 
                                             
                                             class="btn-estadisticas mt-2 text-center btn btn-danger"   title="Ver Estadisticas"
+                                            data-code_equipo="${res.equipo_codigo}"
                                             data-seguimiento_id="${res.seguimiento_id}"
                                             data-paciente_id="${res.seguimiento_paciente_id}"
                                             data-dni="${res.seguimiento_dni}"
@@ -268,6 +269,7 @@
     }
 
     $(function () {
+        
 
         $("#btn-nuevo").click(function () {
             llenarcombo();
@@ -329,7 +331,7 @@
                     $("#tableseguimiento").html(html);
 
                     $(".btn-estadisticas").click(function () {
-
+                        sessionStorage.setItem('CODE_UNICO', $(this).data("code_equipo"))
                         sessionStorage.setItem('seguimiento_id', $(this).data("seguimiento_id"))
                         sessionStorage.setItem('paciente_id', $(this).data("paciente_id"))
                         sessionStorage.setItem('nombre', $(this).data("nombre"))

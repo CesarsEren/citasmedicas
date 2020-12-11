@@ -19,6 +19,7 @@ app.use(
 );
 
 // Routes Server
+app.use(require("./routes/ubidots"));
 app.use(require("./routes/equipos"));
 app.use(require("./routes/paciente"));
 app.use(require("./routes/seguimiento"));
