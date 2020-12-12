@@ -44,7 +44,8 @@
                         <div class="input-group input-group-md">
                             <h3 id="dni-nombre"></h3>
                             <div class="ml-2 form-group">
-                                <select class="form-control" type="date" name="" id="cbohistorial">
+                                <select class="form-control" type="date" name="" id="cbohistorial"
+                                    onchange="cambiarcombofechas()">
                                 </select>
                             </div>
                         </div>
@@ -175,6 +176,9 @@
 </div>
 
 <script>
+    var cambiarcombofechas = function () {
+        cargarcombofechas(getDates($("#cbohistorial option:selected").data("fecha_inicio"), $("#cbohistorial option:selected").data("fecha_fin")));
+    }
     $(function () {
 
         $("#dni-nombre").text(sessionStorage.dni + " - " + sessionStorage.nombre)
