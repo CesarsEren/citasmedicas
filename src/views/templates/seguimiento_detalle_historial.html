@@ -242,6 +242,7 @@
                 $(".loader").fadeOut("slow");
             }
             , success: function (res) {
+                localStorage.token = res.token;
                 llenartemperatura($("#cbofechas option:selected").val());
             }
         })
@@ -405,7 +406,7 @@
         $("#tabledata").html("<strong>Buscando Información</strong>");
         $.ajax({
             type: "GET",
-            url: "ubidots.gettemperatura?equipo=" + $("#cbohistorial option:selected").data("equipo_codigo"),
+            url: "ubidots.gettemperatura?equipo=" + $("#cbohistorial option:selected").data("equipo_codigo") + "&token=" + localStorage.token,
             success: function (res) {
                 var data = res;
                 var html;

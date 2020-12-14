@@ -216,17 +216,17 @@
         $("#tabledata").html("<strong>Buscando Información</strong>");
         $.ajax({
             type: "GET",
-            url: "ubidots.gettemperatura?equipo=" + sessionStorage.CODE_UNICO,
+            url: "ubidots.gettemperatura?equipo=" + sessionStorage.CODE_UNICO+"&token="+localStorage.token,
             success: function (res) {
                 var data = res;
                 var html;
                 for (_item of data.reverse()) {
                     datarow = _item;
                     var fecha = new Date(_item.timestamp).toLocaleString().split(" ")[0];
-                    fecha = new Date(fecha).toLocaleDateString('en-GB');
+                    /*fecha = new Date(fecha).toLocaleDateString('en-GB');
                     console.log(fecha);
                     console.log(dia);
-                    console.log(fecha === dia);
+                    console.log(fecha === dia);*/
                     if (fecha == dia) {
                         datarow.fecha = new Date(_item.timestamp).toLocaleString().split(" ")[0];
                         datarow.hora = new Date(_item.timestamp).toLocaleString().split(" ")[1];
@@ -299,7 +299,7 @@
             legend: {
                 display: false
             },
-            pointRadius: 100, 
+            pointRadius: 100,
             pointBorderWidth: 15,
             /*pointBorderColor: rgba(0, 0, 0, 1),*/
             scales: {
@@ -383,7 +383,8 @@
 
         for (const [index, item] of data.entries()) {
             var _item = new Date(item).toLocaleString();
-            html += `<option ${index == 0 ? 'selected' : ''} value="${new Date(_item).toLocaleDateString('en-GB')}">${new Date(_item).toLocaleDateString('en-US')}</option>`;
+            //html += `<option ${index == 0 ? 'selected' : ''} value="${new Date(_item).toLocaleDateString('en-GB')}">${new Date(_item).toLocaleDateString('en-US')}</option>`;
+            html += `<option ${index == 0 ? 'selected' : ''} value="${new Date(item).toLocaleDateString()}">${new Date(item).toLocaleDateString()}</option>`
         }
         $("#cbofechas").html(html);
     }
@@ -399,6 +400,7 @@
                 $(".loader").fadeOut("slow");
             }
             , success: function (res) {
+                localStorage.token = res.token;
                 llenartemperatura($("#cbofechas option:selected").val());
             }
         })

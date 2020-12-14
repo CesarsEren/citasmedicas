@@ -20,19 +20,20 @@ router.get("/ubidots.generartoken", (req, res) => {
 });
 
 router.get("/ubidots.gettemperatura", (req, res) => {
-  const { equipo } = req.query;
+  const { equipo, token } = req.query;
   //var token = req.session.token;
   Request.get(
     {
       headers: {
-        "X-Auth-Token": req.session.token,
+        "x-auth-token": token, //req.session.token,
       },
       url:
-        "https://industrial.api.ubidots.com/api/v1.6/variables/5fced2114763e70ab79cec27/values", //temperatura
+        "https://industrial.api.ubidots.com/api/v1.6/variables/5fd6430173efc3201eb59ca5/values", //temperatura
     },
     (error, response, body) => {
       var temps = JSON.parse(response.body).results;
       var res1 = [];
+      //res.send(temps);
       for (var tem of temps) {
         if (tem.context.CODE_UNICO === equipo) {
           res1.push(tem);
@@ -41,27 +42,29 @@ router.get("/ubidots.gettemperatura", (req, res) => {
       Request.get(
         {
           headers: {
-            "X-Auth-Token": req.session.token,
+            "x-auth-token": token,
           },
           url:
-            "https://industrial.api.ubidots.com/api/v1.6/variables/5fced2114763e70f35d7870d/values", //frecuencia
+            "https://industrial.api.ubidots.com/api/v1.6/variables/5fd643004763e71066f84ce7/values", //frecuencia
         },
         (error, response, body) => {
           var frecuencias = JSON.parse(response.body).results;
           var res2 = [];
+
           for (var frecuencia of frecuencias) {
             if (frecuencia.context.CODE_UNICO === equipo) {
               res2.push(frecuencia);
             }
           }
+
           //respuesta.push(res2);
           Request.get(
             {
               headers: {
-                "X-Auth-Token": req.session.token,
+                "x-auth-token": token,
               },
               url:
-                "https://industrial.api.ubidots.com/api/v1.6/variables/5fced2114763e70b2e30618e/values", //saturación
+                "https://industrial.api.ubidots.com/api/v1.6/variables/5fd643004763e70b3e2d0aa0/values", //saturación
             },
             (error, response, body) => {
               var saturaciones = JSON.parse(response.body).results;
@@ -71,6 +74,7 @@ router.get("/ubidots.gettemperatura", (req, res) => {
                   res3.push(saturacion);
                 }
               }
+
               var respuestafinal = [];
 
               for (var i = 0; i < res1.length; i++) {
@@ -82,19 +86,19 @@ router.get("/ubidots.gettemperatura", (req, res) => {
                   estado: "",
                 };
                 if (row.temperatura >= 35 && row.temperatura <= 37.5) {
-                  row.estado += "Temperatura Normal|";
+                  row.estado += "Temperatura Normal | ";
                 } else if (row.temperatura >= 37.5 && row.temperatura <= 37.9) {
-                  row.estado += "Temperatura Riesgosa|";
+                  row.estado += "Temperatura Riesgosa | ";
                 } else if (row.temperatura >= 38 && row.temperatura <= 45) {
-                  row.estado += "Temperatura Alarmante|";
+                  row.estado += "Temperatura Alarmante | ";
                 }
 
                 if (row.frecuencia >= 60 && row.frecuencia <= 100) {
-                  row.estado += "BPM Normal|";
+                  row.estado += "BPM Normal | ";
                 } else if (row.frecuencia >= 40 && row.frecuencia <= 60) {
-                  row.estado += "BPM Riesgosa|";
+                  row.estado += "BPM Riesgosa | ";
                 } else if (row.frecuencia >= 100 && row.frecuencia <= 160) {
-                  row.estado += "BPM Alarmante|";
+                  row.estado += "BPM Alarmante | ";
                 }
 
                 row.estado += "Oxigenación Normal";
